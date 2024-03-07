@@ -1,24 +1,38 @@
-import { View, StyleSheet, Text, Image, TouchableOpacity } from "react-native";
+import { View, StyleSheet, Text, Image, TouchableOpacity, Modal } from "react-native";
+import { ModalTokens } from '../components/modal';
 import Slider from "@react-native-community/slider";
+import { useState } from "react";
 
 export function Home() {
+
+  function gerarToken() {
+    configTelaModal(true);
+  }
+  const [qtde, defineQtde] = useState(6)
+  const [telaModal, configTelaModal] = useState(false)
+
   return (
     <View style={ESTILO.container}>
       <Image source={require("../assets/logo.png")} style={ESTILO.logo} />
-      <Text>
-        Meu app!
+      <Text style={ESTILO.caracteres}>
+        {qtde} Caracteres
       </Text>
       <View style={ESTILO.area}>
         <Slider style={{ height: 50 }} minimumValue={6}
           maximumValue={20} minimumTrackTintColor="#ff0000"
           maximumTrackTintColor="#000"
-          thumbTintColor="#392de9" />
+          thumbTintColor="#392de9"
+          value={qtde}
+          onValueChange={(value) => defineQtde(value.toFixed(0))} />
       </View>
-      <TouchableOpacity style={ESTILO.button}>
+      <TouchableOpacity style={ESTILO.button} onPress={gerarToken}>
         <Text style={ESTILO.buttonText}>
           Gerar Senha
         </Text>
       </TouchableOpacity>
+      <Modal visible={telaModal} animationType="fade" transparent={true}>
+        <ModalTokens handleClose={() => configTelaModal(false)} />
+      </Modal>
     </View>
   )
 }
@@ -52,4 +66,8 @@ const ESTILO = StyleSheet.create({
   buttonText: {
     color: "#FFF"
   },
+  caracteres: {
+    fontSize: 30,
+    fontWeight: "bold"
+  }
 })
