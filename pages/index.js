@@ -2,14 +2,24 @@ import { View, StyleSheet, Text, Image, TouchableOpacity, Modal } from "react-na
 import { ModalTokens } from '../components/modal';
 import Slider from "@react-native-community/slider";
 import { useState } from "react";
+let caracteres = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
 
 export function Home() {
 
+
   function gerarToken() {
+    let token = ""
+    for (let i = 0, n = caracteres.length; i < qtde; i++) {
+      token += caracteres.charAt(Math.floor(Math.random() * n))
+    }
     configTelaModal(true);
+    configTokenValue(token);
   }
+
   const [qtde, defineQtde] = useState(6)
   const [telaModal, configTelaModal] = useState(false)
+  const [tokenValue, configTokenValue] = useState("")
+
 
   return (
     <View style={ESTILO.container}>
@@ -31,7 +41,7 @@ export function Home() {
         </Text>
       </TouchableOpacity>
       <Modal visible={telaModal} animationType="fade" transparent={true}>
-        <ModalTokens handleClose={() => configTelaModal(false)} />
+        <ModalTokens token={tokenValue} fechar={() => configTelaModal(false)} />
       </Modal>
     </View>
   )
