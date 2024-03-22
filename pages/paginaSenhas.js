@@ -13,7 +13,7 @@ export function PaginaSenhas() {
 
 
     async function deletarToken(item) {
-        const tokens = await removerItem("@pass", item)
+        const tokens = await removerItem("@token", item)
         defListaTokens(tokens)
     };
 
