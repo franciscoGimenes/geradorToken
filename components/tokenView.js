@@ -22,7 +22,7 @@ export function CaixaToken({ token, removerToken }) {
 
     return (
         <View style={ESTILOS.caixa}>
-            <Pressable onPress={copiarToken}>
+            <Pressable onLongPress={copiarToken}>
                 <Text style={ESTILOS.text}>
                     {token}
                 </Text>
