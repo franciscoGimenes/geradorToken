@@ -39,8 +39,8 @@ export function PaginaSenhas() {
                     data={listaTokens}
                     keyExtractor={(item) => String(item)}
                     renderItem={({ item }) => <CaixaToken
-                        data={item}
-                        removePassword={() => deletarToken(item)}
+                        token={item}
+                        removerToken={() => deletarToken(item)}
                     />}
                 />
             </View>

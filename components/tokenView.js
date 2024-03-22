@@ -1,11 +1,11 @@
 import React from "react";
 import { Text, StyleSheet, Pressable } from "react-native";
 
-export function CaixaToken() {
+export function CaixaToken({token, removerToken}) {
     return (
-        <Pressable style={ESTILOS.caixa}>
+        <Pressable style={ESTILOS.caixa} onLongPress={removerToken}>
             <Text style={ESTILOS.text}>
-                Token salvo
+                {token}
             </Text>
         </Pressable>
     )

@@ -4,7 +4,7 @@ export default function Armazenamento() {
 
     async function obterItem(chave) {
         try {
-            const tokens = await AsyncStorage.obterItem(chave);
+            const tokens = await AsyncStorage.getItem(chave);
             return JSON.parse(tokens) || [];
         }
 
